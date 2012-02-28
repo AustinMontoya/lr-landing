@@ -35,6 +35,7 @@ class KeysHandler(Jinja2Rendering):
 
 class KeyHandler(Jinja2Rendering):
   def get(self,keyword):
+      print 'got here'
       client = redis.Redis()    
       ids = client.lrange(keyword,0,-1)    
       return self.render_template('docs.html',ids=ids)

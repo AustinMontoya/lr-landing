@@ -1,5 +1,33 @@
 <html>
 	<body>
-		<a href="{{ doc['resource_locator'] }}">{{ doc['resource_locator'] }}</a>
+		<div>
+			<a href="{{ doc['resource_locator'] }}">Reource Locator</a>
+		</div>
+		<div>
+			<h2>Keys</h2>
+			<ul>
+				{% for key in doc['keys'] %}
+					<li>{{key}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div>
+			<h2>Terms Of Service</h2>
+			<div>
+ 				<a href="{{ doc['TOS']['submission_TOS'] }}">{{ doc['TOS']['submission_attribution'] }}</a>
+			</div>									
+		</div>
+		<div>
+			<h2>Identity</h2>
+			<div>
+ 				<p>Owner: {{ doc['identity']['owner'] }}</p>
+ 				<p>Submitter: {{ doc['identity']['submitter'] }}</p>
+ 				<p>Curator: {{ doc['identity']['curator'] }}</p>
+			</div>									
+		</div>		
+		<div>
+			<h2>Resource Data</h2>
+			{{ doc['resource_data']}}
+		</div>
 	</body>
 </html>
