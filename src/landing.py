@@ -6,6 +6,7 @@ from brubeck.templating import Jinja2Rendering,load_jinja2_env
 import json
 import pymongo
 import redis
+import urllib
 from bson.objectid import ObjectId
 from gevent.monkey import *
 patch_all()
@@ -35,14 +36,14 @@ class KeysHandler(Jinja2Rendering):
 
 class KeyHandler(Jinja2Rendering):
   def get(self,keyword):
-      print 'got here'
       client = redis.Redis()    
+      keyword = urllib.unquote(keyword)
       ids = client.lrange(keyword,0,-1)    
       return self.render_template('docs.html',ids=ids)
 
-urls = [(r'^/keys/(\w+)$',KeyHandler), 
+urls = [(r'^/keys/(.+)$',KeyHandler), 
         (r'^/keys',KeysHandler),
-        (r'^/docs/(\w+)$', DocHandler),        
+        (r'^/docs/(.+)$', DocHandler),        
         (r'^/docs', DocsHandler),
         (r'^/', IndexHandler)]
                 
