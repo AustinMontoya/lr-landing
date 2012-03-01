@@ -16,7 +16,14 @@ MongoDB
 
 ### Mongrel2
 
- From the mongrel2 directory run the following commands
+From the mongrel2 directory run the following commands
 
     m2sh start -db the.db -host localhost
     m2sh start -db the.db -host localhost
+    
+### Brubeck
+
+From the src directory run
+
+    ./landing.py
+    
