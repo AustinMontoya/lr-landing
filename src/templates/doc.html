@@ -7,7 +7,7 @@
 			<h2>Keys</h2>
 			<ul>
 				{% for key in doc['keys'] %}
-					<li>{{key}}</li>
+					<li><a href="/keys/{{ key }}">{{ key }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
