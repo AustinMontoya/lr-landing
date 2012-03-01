@@ -35,13 +35,19 @@ class KeysHandler(Jinja2Rendering):
       return self.render_template('keys.html',keys=keys)
 
 class KeyHandler(Jinja2Rendering):
-  def get(self,keyword):
-      client = redis.Redis()    
-      keyword = urllib.unquote(keyword)
-      ids = client.lrange(keyword,0,-1)    
-      return self.render_template('docs.html',ids=ids)
-
-urls = [(r'^/keys/(.+)$',KeyHandler), 
+    def get(self,keyword):
+        client = redis.Redis()    
+        keyword = urllib.unquote(keyword)
+        ids = client.lrange(keyword,0,-1)    
+        return self.render_template('docs.html',ids=ids)
+class SitemapHandler(Jinja2Rendering):
+    def get(self):
+        client = redis.Redis()    
+        ids = client.lrange('ids',0,-1) 
+        self.headers["Conent-Type"] = 'text/xml'
+        return self.render_template('sitemap.xml',ids=ids)      
+urls = [(r'^/sitemap.xml',SitemapHandler),
+        (r'^/keys/(.+)$',KeyHandler), 
         (r'^/keys',KeysHandler),
         (r'^/docs/(.+)$', DocHandler),        
         (r'^/docs', DocsHandler),
