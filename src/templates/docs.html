@@ -6,4 +6,7 @@
 		{% endfor %}
 		</ul>
 	</body>
+	{% if nextUrl is defined %}
+	<a href="{{nextUrl}}">Next</a>
+	{% endif %}
 </html>

@@ -5,5 +5,8 @@
 		  <li><a href="/keys/{{ key }}">{{ key }}</a></li>
 		{% endfor %}
 		</ul>
+		{% if pos is defined%}
+		<a href="/keys?pos={{pos}}">Next</a>
+		{% endif %}
 	</body>
 </html>
